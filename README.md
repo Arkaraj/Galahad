@@ -1,11 +1,11 @@
 # Galahad
 
-Graphql api with Typescript
+A User-Post-Comments Graphql api with Typescript
 
 ## Tech Stack
 
 - TypeScript
-- GraphQL
+- GraphQL Apollo Server
 - Sql DB (Mysql)
 - Express, Typeorm
 
@@ -15,5 +15,8 @@ Graphql api with Typescript
 
 # cmd from https://github.com/benawad/create-graphql-api
 npx create-graphql-api Galahad
+
+# Migrations
+npx ts-node ./node_modules/.bin/typeorm migration:generate -n initialEntities
 
 ```

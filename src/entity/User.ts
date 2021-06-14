@@ -1,16 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  BaseEntity,
+} from "typeorm";
+import { Comment } from "./Comment";
+import { CommentVote } from "./CommentVote";
+import { Post } from "./Post";
+import { Vote } from "./Vote";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
-  @Column()
-  firstName: string;
+  @Column("varchar")
+  name: string;
 
-  @Column()
-  lastName: string;
+  @OneToMany(() => Post, (pst) => pst.author)
+  posts: Array<Post>;
 
-  @Column()
-  age: number;
+  @OneToMany(() => Comment, (cmt) => cmt.user)
+  comments: Array<Comment>;
+
+  @OneToMany(() => Vote, (vt) => vt.user)
+  postVotes: Vote[];
+
+  @OneToMany(() => CommentVote, (cv) => cv.user)
+  commentVotes: CommentVote[];
 }
