@@ -4,6 +4,8 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
+import { PostResolver } from "./resolvers/PostResolver";
+import { UserResolver } from "./resolvers/UserResolver";
 
 (async () => {
   const app = express();
@@ -12,7 +14,7 @@ import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloWorldResolver],
+      resolvers: [HelloWorldResolver, UserResolver, PostResolver],
       validate: true,
     }),
     context: ({ req, res }) => ({ req, res }),
