@@ -26,6 +26,7 @@ export class Comment extends BaseEntity {
   @Field()
   @Column("varchar")
   userid: string;
+  @Field(() => User)
   @ManyToOne(() => User, (usr) => usr.comments)
   @JoinColumn({ name: "userid" })
   user: User;
@@ -33,6 +34,7 @@ export class Comment extends BaseEntity {
   @Field()
   @Column("varchar")
   postid: string;
+  @Field(() => Post)
   @ManyToOne(() => Post, (pst) => pst.comments)
   @JoinColumn({ name: "postid" })
   post: Post;
